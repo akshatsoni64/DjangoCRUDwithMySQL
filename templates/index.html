@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block form %}
+    <form method="POST" action="{% url "display" %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Insert">
+    </form>
+{% endblock %}
+{% block entries %}
+    <table border="1">
+        <tr>
+            <th>Eno.</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Action</th>
+        </tr>
+        {% for entry in studentdata %}
+            <tr>
+                <td>{{ entry.eno }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.branch }}</td>
+                <td>
+                    <a href="{%  url 'update' entry.id %}">
+                        <input type="button" value="Update">
+                    </a>
+                    <a href="{%  url 'delete' entry.id %}">
+                        <input type="button" value="Delete">
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import CRUDapp.views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', CRUDapp.views.index, name='index'),
+    path('display', CRUDapp.views.display, name="display"),
+    path('update/<int:sid>', CRUDapp.views.update, name="update"),
+    path('delete/<int:sid>', CRUDapp.views.delete, name="delete")
 ]
