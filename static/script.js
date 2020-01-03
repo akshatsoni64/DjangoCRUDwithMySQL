@@ -16,15 +16,18 @@ function getCookie(name) {
 
 $(document).ready(function(){
     // console.log("Jquery Working Fine Sir!");
-    /*
-    $("#editStudent").on('submit','form',function(e){
+
+    // $("#editStudent").on('submit','form',function(e){
+    $("#editStudent").click(function(){
         alert("Updating"+this.id);
-        e.preventDefault();
-        var sid = this.id.substr(8,9);
-        var formdata = new FormData(this);
+        var cookies = document.cookie.split(";");
+        var cookie = cookies[0].split("=")
+        // console.log("Cookie"+cookie[1]);
+
+        var formdata = new FormData($("#addStudent")[0]);
 
         $.ajax({
-            url:'insert/'+sid,
+            url:'insert/'+cookie[1],
             type:'POST',
             processData: false,
             cache: false,
@@ -35,15 +38,14 @@ $(document).ready(function(){
                 alert("Updated");
                 $("#addStudent").trigger("reset");
                 window.location.href="http://localhost:8000/index";
-                $("#editStudent").prop('id','addStudent')
+                $("#submitStudent").css("display","block");
+                $("#editStudent").css("display","none");
             }
         });
     });
-    */
 
     $("#addStudent").submit(function(e){
-        alert("Inserting"+this.id);
-        e.preventDefault();
+         e.preventDefault();
         var formdata = new FormData(this);
         // for(var pair of formData.entries()) {
         //    console.log(pair[0]+ ', '+ pair[1]);
@@ -67,7 +69,8 @@ $(document).ready(function(){
     $(".editStudent").on('click',function(){
         console.log("Edit Request");
         var sid = this.id.substr(8,9);
-        console.log(sid);
+        document.cookie="sid="+sid;
+        // console.log(sid);
         $.ajaxSetup({
             headers: { "X-CSRFToken": getCookie('csrftoken') }
         });
@@ -80,6 +83,8 @@ $(document).ready(function(){
                 $("#nameStudent").val(data['name']);
                 $("#branchStudent").val(data['branch']);
                 $("#enoStudent").val(data['eno']);
+                $("#submitStudent").css("display","none");
+                $("#editStudent").css("display","block");
             }
         });
 

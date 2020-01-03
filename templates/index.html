@@ -4,7 +4,8 @@
     <form id="addStudent" name="addStudent" method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Insert">
+        <input type="submit" value="Insert" id="submitStudent">
+        <button type="button" id="editStudent" style="display:none">Submit</button>
     </form>
 {% endblock %}
 {% block entries %}
