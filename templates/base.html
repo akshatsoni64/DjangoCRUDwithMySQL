@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>CRUD App Django</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Students: </h1>
@@ -14,5 +16,8 @@
     <h3>List of Students: </h3>
     {% block entries %}
     {% endblock %}
+    <script src="{% static "script.js" %}"></script>
 </body>
 </html>
+{% block edit %}
+{% endblock %}

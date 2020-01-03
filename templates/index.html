@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block form %}
-    <form method="POST" action="{% url "display" %}">
+    <form id="addStudent" name="addStudent" method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Insert">
     </form>
 {% endblock %}
 {% block entries %}
-    <table border="1">
+    <table border="1" id="studentdata">
         <tr>
             <th>Eno.</th>
             <th>Name</th>
@@ -21,12 +21,8 @@
                 <td>{{ entry.name }}</td>
                 <td>{{ entry.branch }}</td>
                 <td>
-                    <a href="{%  url 'update' entry.id %}">
-                        <input type="button" value="Update">
-                    </a>
-                    <a href="{%  url 'delete' entry.id %}">
-                        <input type="button" value="Delete">
-                    </a>
+                    <button class="editStudent" id="eStudent{{ entry.id }}" type="button">Update</button>
+                    <button class="deleteStudent" id="dStudent{{ entry.id }}" type="button">Delete</button>
                 </td>
             </tr>
         {% endfor %}
