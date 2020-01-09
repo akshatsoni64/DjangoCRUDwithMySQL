@@ -8,7 +8,7 @@ from django.views import View
 
 
 class CRUDOps(View):
-    def getmodal(self):
+    def getmodal(self): #never used - just for future reference
         data = Student.objects.all()
         modal = ""
         for entry in data:
