@@ -8,16 +8,16 @@ from django.views import View
 
 
 class CRUDOps(View):
-    def getmodal(self): #never used - just for future reference
-        data = Student.objects.all()
-        modal = ""
-        for entry in data:
-            modal += " <tr><td>" + entry.eno + "</td><td>" + entry.name + "</td><td>" + entry.branch + "</td><td>"
-            modal += "<button class='editStudent' id='eStudent" + str(entry.id) + "' type='button'>Update</button>"
-            modal += "<button class='deleteStudent' id='dStudent" + str(entry.id) + "' type='button'>Delete</button>"
-            modal += "</td></tr>"
+#     def getmodal(self): #never used - just for future reference
+#         data = Student.objects.all()
+#         modal = ""
+#         for entry in data:
+#             modal += " <tr><td>" + entry.eno + "</td><td>" + entry.name + "</td><td>" + entry.branch + "</td><td>"
+#             modal += "<button class='editStudent' id='eStudent" + str(entry.id) + "' type='button'>Update</button>"
+#             modal += "<button class='deleteStudent' id='dStudent" + str(entry.id) + "' type='button'>Delete</button>"
+#             modal += "</td></tr>"
 
-        return modal
+#         return modal
 
     def get(self, request):
         form = StudentForm(request.POST)
